@@ -2,7 +2,7 @@ class FetchApi {
     constructor(apiUrl) {
         this.apiUrl = apiUrl;
     }
-    getGamesList() {
+    getGamesList = () => {
         return fetch(`${this.apiUrl}` + "/games", {
             method: "GET",
             headers: {
@@ -11,12 +11,12 @@ class FetchApi {
         })
             .then(response => response.json());
     }
-    deleteGame(gameID) {
+    deleteGame = (gameID) => {
         return fetch(`${this.apiUrl}` + "/games/" + gameID, {
             method: "DELETE",
         }).then(r => r.text());
     }
-    createGameRequest() {
+    createGameRequest = () => {
         return fetch(`${this.apiUrl}` + "/games/", {
             method: "POST",
             headers: {
@@ -25,7 +25,7 @@ class FetchApi {
             body: gameObject
         }).then(response => response.json());
     }
-    updateGameRequest(gameId, updatedGameObj) {
+    updateGameRequest = (gameId, updatedGameObj) => {
         return fetch(`${this.apiUrl}` + "/games/" + gameId, {
             method: "PUT",
             headers: {

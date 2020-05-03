@@ -5,7 +5,7 @@ class Game {
         this.description = description;
         this.imageUrl = imageUrl;
     }
-    show() {
+    show = () => {
         const gameELement = document.createElement("div");
         gameELement.setAttribute("id", this._id);
         gameELement.setAttribute('class', 'gameELement');
@@ -17,4 +17,3 @@ class Game {
         return gameELement;
     }
 }
-

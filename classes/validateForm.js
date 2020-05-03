@@ -7,7 +7,7 @@ class CreateGameForm {
         this.imageUrl = imageUrl;
         this.description = description;
     }
-    validateFormElement(inputElement, errorMessage) {
+    validateFormElement = (inputElement, errorMessage) => {
         if (inputElement.value === "") {
             if (!document.querySelector('[rel="' + inputElement.id + '"]')) {
                 buildErrorMessage(inputElement, errorMessage);
@@ -21,12 +21,12 @@ class CreateGameForm {
             }
         }
     }
-    validateReleaseTimestampElement(inputElement, errorMessage) {
+    validateReleaseTimestampElement = (inputElement, errorMessage) => {
         if (isNaN(inputElement.value) && inputElement.value !== "") {
             buildErrorMessage(inputElement, errorMessage);
         }
     }
-    buildErrorMessage(inputEl, errosMsg) {
+    buildErrorMessage = (inputEl, errosMsg) => {
         inputEl.classList.add("inputError");
         const errorMsgElement = document.createElement("span");
         errorMsgElement.setAttribute("rel", inputEl.id);
@@ -34,7 +34,7 @@ class CreateGameForm {
         errorMsgElement.innerHTML = errosMsg;
         inputEl.after(errorMsgElement);
     }
-    displayCreatedGame(request) {
+    displayCreatedGame = (request) => {
         const gameELement = document.createElement("div");
         gameELement.setAttribute("id", `${request._id}`);
         gameELement.setAttribute('class', 'gameELement');

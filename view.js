@@ -1,9 +1,9 @@
 const apiUrl = new FetchApi('https://games-app-siit.herokuapp.com');
 
-async function displayGames(){
+displayGames = async () => {
     const arrayOfGames = await apiUrl.getGamesList();
     const gameContainer = document.querySelector('.container')
-    for(var i = 0; i < arrayOfGames.length; i++) {
+    for(let i = 0; i < arrayOfGames.length; i++) {
         const game = new Game(arrayOfGames[i]._id, arrayOfGames[i].title, arrayOfGames[i].description, arrayOfGames[i].imageUrl);
         const gameDiv = game.show();
         gameContainer.appendChild(gameDiv);
@@ -19,7 +19,7 @@ async function displayGames(){
         }
     })
     }
-    function newDomElement(gameContainer){
+    newDomElement = (gameContainer) => {
         const gameTitle = gameContainer.querySelector('h1');
         const gameDescription = gameContainer.querySelector('p');
         const gameImageURL = gameContainer.querySelector('img');
@@ -34,7 +34,7 @@ async function displayGames(){
                                     <button class="updateBtn">Save Changes</button>
                                     <button class="cancelBtn">Cancel</button>`;
         gameContainer.appendChild(updateGameElement);
-        gameContainer.querySelector('.cancelBtn').addEventListener('click', function(event){
+        gameContainer.querySelector('.cancelBtn').addEventListener('click', (event) => {
             event.preventDefault();
             removeDeletedElementFromDOM(updateGameElement);
         });
@@ -61,11 +61,11 @@ async function displayGames(){
 };
 displayGames()
 
-function removeDeletedElementFromDOM(domElement){
+removeDeletedElementFromDOM = (domElement) => {
     domElement.remove();
 };
 
-document.querySelector(".submitBtn").addEventListener("click", function(event){
+document.querySelector(".submitBtn").addEventListener("click", (event) => {
     event.preventDefault();
     const newGame = new CreateGameForm(document.getElementById("gameTitle"),
                                         document.getElementById("gameDescription"),
@@ -91,7 +91,7 @@ document.querySelector(".submitBtn").addEventListener("click", function(event){
         urlencoded.append("imageUrl", newGame.gameImageUrl.value);
         urlencoded.append("description", newGame.gameDescription.value);
 
-       (async function createGame(){
+       (createGame = async () =>{
            const request = await apiUrl.createGameRequest(urlencoded)
            console.log(request);
            const newGameDom = newGame.displayCreatedGame(request);
